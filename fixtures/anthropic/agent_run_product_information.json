@@ -1,0 +1,9 @@
+{
+  "content": "This is a recorded fixture response for the CMG medical inquiry. Based on approved product labeling, standard dosing applies. [Cited: DOC-001]",
+  "usage": {
+    "input_tokens": 150,
+    "output_tokens": 50
+  },
+  "cost": 0.0012,
+  "latency_ms": 450.0
+}
