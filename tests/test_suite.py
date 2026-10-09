@@ -4,13 +4,13 @@ import json
 import os
 
 import numpy as np
-from skillrouterbench.data.generate import generate_dataset
 
 from skillrouterbench.agent.llm import AnthropicWrapper
 from skillrouterbench.agent.runtime import AgentConfig, AgentRuntime
 from skillrouterbench.bench.classifier_bench import bootstrap_ci
 from skillrouterbench.bench.pricing import PRICING
 from skillrouterbench.classifiers.calibrate import compute_ece_brier
+from skillrouterbench.data.generate import generate_dataset
 from skillrouterbench.mcp_servers.docs_server import get_document, search_documents
 from skillrouterbench.mcp_servers.tabular_server import query_metrics
 
