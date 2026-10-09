@@ -1,11 +1,11 @@
 """MCP docs search and retrieval server using TF-IDF."""
 
 import json
-import pandas as pd
 from pathlib import Path
+
+from mcp.server.fastmcp import FastMCP
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from mcp.server.fastmcp import FastMCP
 
 mcp = FastMCP("DocsServer")
 

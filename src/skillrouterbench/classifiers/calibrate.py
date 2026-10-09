@@ -2,15 +2,14 @@
 
 import argparse
 import json
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from pathlib import Path
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
-from torch.utils.data import DataLoader, TensorDataset
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 
 def load_jsonl(path: Path):
@@ -75,12 +74,12 @@ def main():
 
     val_data = load_jsonl(Path(args.data_dir) / "val.jsonl")
     if args.task == "router":
-        INTENTS = [
+        intents = [
             "product_information", "adverse_event_report", "off_label_request",
             "access_and_reimbursement", "clinical_trial_inquiry",
             "medical_literature_request", "speaker_program_logistics"
         ]
-        label2id = {l: i for i, l in enumerate(INTENTS)}
+        label2id = {lbl: i for i, lbl in enumerate(intents)}
         labels = np.array([label2id[x["intent"]] for x in val_data])
     else:
         label2id = {"allow": 0, "needs_human_review": 1}

@@ -1,8 +1,9 @@
 """MCP tabular metrics query server using pandas."""
 
 import json
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
 from mcp.server.fastmcp import FastMCP
 
 mcp = FastMCP("TabularServer")

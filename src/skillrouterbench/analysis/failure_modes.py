@@ -26,7 +26,7 @@ def main():
         json.dump(failure_taxonomy, f, indent=2)
 
     md_content = "# Agent Failure Mode Taxonomy\n\n"
-    md_content += f"Total evaluated runs: 150 inquiries across 8 ablation config arms (1200 total executions).\n"
+    md_content += "Total evaluated runs: 150 inquiries across 8 ablation config arms (1200 total executions).\n"
     md_content += f"Total recorded failure instances: {failure_taxonomy['total_failures']}.\n\n"
     md_content += "| Failure Category | Count | Description |\n"
     md_content += "|---|---|---|\n"

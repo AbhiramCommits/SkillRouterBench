@@ -1,10 +1,11 @@
 """Agent ablation study across configuration arms and rubric grader."""
 
 import json
-import random
-import numpy as np
 from pathlib import Path
-from skillrouterbench.agent.runtime import AgentRuntime, AgentConfig
+
+import numpy as np
+
+from skillrouterbench.agent.runtime import AgentConfig, AgentRuntime
 
 
 def load_jsonl(path: Path):

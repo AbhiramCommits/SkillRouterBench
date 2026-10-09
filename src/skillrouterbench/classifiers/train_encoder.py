@@ -2,12 +2,18 @@
 
 import argparse
 import json
-import torch
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
-from pathlib import Path
+import torch
 from datasets import Dataset
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, Trainer, TrainingArguments
+from transformers import (
+    AutoModelForSequenceClassification,
+    AutoTokenizer,
+    Trainer,
+    TrainingArguments,
+)
 
 INTENTS = [
     "product_information",
@@ -48,15 +54,15 @@ def main():
 
     if args.task == "router":
         label_list = INTENTS
-        label2id = {l: i for i, l in enumerate(label_list)}
-        id2label = {i: l for i, l in enumerate(label_list)}
+        label2id = {lbl: i for i, lbl in enumerate(label_list)}
+        id2label = {i: lbl for i, lbl in enumerate(label_list)}
 
         def process_item(item):
             return {"text": item["text"], "label": label2id[item["intent"]]}
     else:
         label_list = ["allow", "needs_human_review"]
-        label2id = {l: i for i, l in enumerate(label_list)}
-        id2label = {i: l for i, l in enumerate(label_list)}
+        label2id = {lbl: i for i, lbl in enumerate(label_list)}
+        id2label = {i: lbl for i, lbl in enumerate(label_list)}
 
         def process_item(item):
             return {"text": item["text"], "label": label2id[item["guardrail"]]}

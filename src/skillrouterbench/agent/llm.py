@@ -1,9 +1,10 @@
 """Anthropic API client wrapper with fixture replay fallback."""
 
-import os
 import json
+import os
 import time
 from pathlib import Path
+
 from anthropic import Anthropic
 
 FIXTURES_DIR = Path("fixtures/anthropic")
