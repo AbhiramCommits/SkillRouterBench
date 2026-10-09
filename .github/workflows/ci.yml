@@ -29,7 +29,7 @@ jobs:
 
     - name: Generate Data
       run: |
-        python -m skillrouterbench.data.generate --out data/
+        PYTHONPATH=src python -m skillrouterbench.data.generate --out data/
 
     - name: Run Pytest with Coverage
       run: |
