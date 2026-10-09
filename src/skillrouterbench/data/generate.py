@@ -3,9 +3,10 @@
 import argparse
 import json
 import random
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
-from pathlib import Path
 
 INTENTS = [
     "product_information",
