@@ -2,10 +2,11 @@
 
 import argparse
 import json
-import torch
-import numpy as np
 from pathlib import Path
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
+
+import numpy as np
+import torch
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 
 def load_jsonl(path: Path):

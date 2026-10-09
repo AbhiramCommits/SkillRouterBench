@@ -4,7 +4,7 @@ import argparse
 import json
 import time
 from dataclasses import dataclass
-from pathlib import Path
+
 from skillrouterbench.agent.llm import AnthropicWrapper
 from skillrouterbench.mcp_servers.docs_server import search_documents
 from skillrouterbench.mcp_servers.tabular_server import query_metrics

@@ -1,6 +1,5 @@
 """Build component decision table."""
 
-import json
 from pathlib import Path
 
 

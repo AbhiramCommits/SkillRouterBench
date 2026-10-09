@@ -2,15 +2,14 @@
 
 import json
 import time
-import torch
-import numpy as np
-import pandas as pd
 from pathlib import Path
-from sklearn.metrics import f1_score, accuracy_score
+
+import numpy as np
+import torch
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
-from skillrouterbench.bench.pricing import PRICING
+from sklearn.metrics import accuracy_score, f1_score
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 
 def load_jsonl(path: Path):
@@ -39,12 +38,12 @@ def main():
     train_data = load_jsonl(data_dir / "train.jsonl")
 
     texts = [x["text"] for x in test_data]
-    INTENTS = [
+    intents = [
         "product_information", "adverse_event_report", "off_label_request",
         "access_and_reimbursement", "clinical_trial_inquiry",
         "medical_literature_request", "speaker_program_logistics"
     ]
-    label2id = {l: i for i, l in enumerate(INTENTS)}
+    label2id = {lbl: i for i, lbl in enumerate(intents)}
     true_labels = [label2id[x["intent"]] for x in test_data]
     is_hard_mask = [x["is_hard"] for x in test_data]
 
@@ -55,14 +54,14 @@ def main():
     train_labels = [label2id[x["intent"]] for x in train_data]
 
     vectorizer = TfidfVectorizer(max_features=5000)
-    X_train = vectorizer.fit_transform(train_texts)
-    X_test = vectorizer.transform(texts)
+    x_train = vectorizer.fit_transform(train_texts)
+    x_test = vectorizer.transform(texts)
 
     lr_model = LogisticRegression(max_iter=200, random_state=42)
-    lr_model.fit(X_train, train_labels)
+    lr_model.fit(x_train, train_labels)
 
     start_t = time.time()
-    lr_preds = lr_model.predict(X_test).tolist()
+    lr_preds = lr_model.predict(x_test).tolist()
     lr_latency = (time.time() - start_t) * 1000.0 / len(texts)
 
     macro_f1 = f1_score(true_labels, lr_preds, average="macro", zero_division=0)

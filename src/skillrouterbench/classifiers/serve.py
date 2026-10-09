@@ -1,12 +1,12 @@
 """FastAPI encoder inference service."""
 
-import json
-import torch
-import numpy as np
 from pathlib import Path
+
+import numpy as np
+import torch
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 app = FastAPI(title="Encoder Inference Service", version="0.1.0")
 

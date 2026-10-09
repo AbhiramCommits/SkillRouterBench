@@ -39,9 +39,9 @@ env/
 .DS_Store
 
 # Artifacts
-models/
-results/
-data/
+/models/
+/results/
+/data/
 .pytest_cache/
 .coverage
 htmlcov/
